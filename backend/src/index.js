@@ -23,9 +23,11 @@ const app = express();
 // Gzip-compress all responses
 app.use(compression());
 
-// Enable CORS for frontend integration
+// Enable CORS for frontend integration.
+// Set CLIENT_URL in production to your deployed frontend origin; falls back
+// to allowing all origins for local development convenience.
 app.use(cors({
-  origin: '*', // For MVP development simplicity, allow all. Customize for production.
+  origin: process.env.CLIENT_URL || '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

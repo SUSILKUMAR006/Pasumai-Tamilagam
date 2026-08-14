@@ -1,4 +1,6 @@
-const API_BASE = 'http://localhost:5000/api';
+import { API_BASE_URL } from '../config';
+
+const API_BASE = `${API_BASE_URL}/api`;
 
 // Utility helper to request API data
 const request = async (endpoint, options = {}) => {

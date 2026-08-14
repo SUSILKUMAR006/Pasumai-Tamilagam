@@ -1,4 +1,6 @@
-const API_ORIGIN = 'http://localhost:5000';
+import { API_BASE_URL } from '../config';
+
+const API_ORIGIN = API_BASE_URL;
 
 // Cloudinary (and any future host) already returns an absolute URL; only
 // legacy local-disk uploads (`/uploads/...`) need the backend origin prefixed.
