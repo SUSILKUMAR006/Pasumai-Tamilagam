@@ -69,6 +69,7 @@ export const translations = {
       newToPlatform: 'New to the platform?',
       registerHere: 'Register My Tree',
       errorDefault: 'Invalid email or password',
+      wakingUp: 'Waking up the server — this can take up to a minute on the first request. Thanks for your patience.',
     },
     register: {
       createAccount: 'Create Account',
@@ -220,6 +221,7 @@ export const translations = {
       newToPlatform: 'இந்த தளத்திற்கு புதியவரா?',
       registerHere: 'எனது மரத்தை பதிவு செய்யவும்',
       errorDefault: 'தவறான மின்னஞ்சல் அல்லது கடவுச்சொல்',
+      wakingUp: 'சேவையகம் தயாராகிறது — முதல் முயற்சிக்கு ஒரு நிமிடம் வரை ஆகலாம். பொறுமைக்கு நன்றி.',
     },
     register: {
       createAccount: 'கணக்கை உருவாக்கவும்',

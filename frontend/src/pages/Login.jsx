@@ -11,12 +11,18 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [wakingUp, setWakingUp] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSubmitting(true);
+    setWakingUp(false);
+    // Render's free tier spins the backend down after idling; the first
+    // request after that can take 30-60s+ to cold-start. Surface a hint
+    // if the request is taking noticeably longer than a normal login.
+    const wakeTimer = setTimeout(() => setWakingUp(true), 4000);
 
     try {
       const loggedUser = await login(email, password);
@@ -28,7 +34,9 @@ const Login = () => {
     } catch (err) {
       setError(err.message || t('login.errorDefault'));
     } finally {
+      clearTimeout(wakeTimer);
       setSubmitting(false);
+      setWakingUp(false);
     }
   };
 
@@ -117,6 +125,11 @@ const Login = () => {
                 </>
               )}
             </button>
+            {wakingUp && (
+              <p className="mt-3 text-center text-xs font-semibold text-amber-600">
+                {t('login.wakingUp')}
+              </p>
+            )}
           </div>
         </form>
 

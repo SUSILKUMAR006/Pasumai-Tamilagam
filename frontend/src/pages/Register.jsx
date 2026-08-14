@@ -18,6 +18,7 @@ const Register = () => {
   const [districts, setDistricts] = useState([]);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [wakingUp, setWakingUp] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,13 +50,21 @@ const Register = () => {
     }
 
     setSubmitting(true);
+    setWakingUp(false);
+    // Render's free tier spins the backend down after idling; the first
+    // request after that can take 30-60s+ to cold-start. Surface a hint
+    // if the request is taking noticeably longer than a normal signup.
+    const wakeTimer = setTimeout(() => setWakingUp(true), 4000);
+
     try {
       await register(formData);
       navigate('/dashboard');
     } catch (err) {
       setError(err.message || t('register.errorDefault'));
     } finally {
+      clearTimeout(wakeTimer);
       setSubmitting(false);
+      setWakingUp(false);
     }
   };
 
@@ -207,6 +216,11 @@ const Register = () => {
                 </>
               )}
             </button>
+            {wakingUp && (
+              <p className="mt-3 text-center text-xs font-semibold text-amber-600">
+                {t('login.wakingUp')}
+              </p>
+            )}
           </div>
         </form>
 
