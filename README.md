@@ -271,7 +271,9 @@ Tree photo capture uses `capture="environment"` on the file input so mobile brow
 This repo includes a [`render.yaml`](render.yaml) Blueprint that provisions both services:
 
 - **`pasumai-tamilagam-backend`** — Node web service, root directory `backend`, build `npm install`, start `npm start`.
-- **`pasumai-tamilagam-frontend`** — static site, root directory `frontend`, build `npm install && npm run build`, publish directory `dist`, with a SPA rewrite (`/*` → `/index.html`, also present as `frontend/public/_redirects` for manual/non-Blueprint setups so client-side routes don't 404 on refresh).
+- **`pasumai-tamilagam-frontend`** — static site, root directory `frontend`, build `npm install && npm run build`, publish directory `dist`, with a SPA rewrite (`/*` → `/index.html`) and a long-lived `Cache-Control` header on hashed `/assets/*` files.
+
+> **If you created the services manually through the dashboard instead of via the Blueprint, `render.yaml` is not read at all** — its `routes:`/`headers:` config only applies to Blueprint-deployed services. You must add these yourself: frontend service → **Settings → Redirects/Rewrites** → add `Source: /*`, `Destination: /index.html`, `Action: Rewrite`. Without this, every client-side route (`/dashboard`, `/profile`, `/tree/:id`, etc.) 404s on a real page load — refresh, reopening a tab, a mobile browser reloading a backgrounded tab — even though in-app navigation between them works fine, since that never leaves the already-loaded page. The committed `frontend/public/_redirects` file is a Netlify-style convention kept as a harmless fallback, but don't rely on it alone — verify directly (`curl -I https://<your-frontend>.onrender.com/dashboard` should return `200`, not `404`) after deploying either way.
 
 ### Steps
 
@@ -293,5 +295,5 @@ This repo includes a [`render.yaml`](render.yaml) Blueprint that provisions both
 ### Notes
 
 - No custom domain or SSL setup is required to get started — Render provides HTTPS `*.onrender.com` URLs for both services out of the box.
-- The free plan spins down the backend after inactivity; the first request after idling will be slow (cold start) — expected, not a bug.
-- Prefer manual setup over the Blueprint? Create the two services yourself in the Render dashboard using the same root directories / build / start commands listed above, and set the same env vars.
+- The free plan spins down the backend after inactivity; the first request after idling will be slow (cold start) — expected, not a bug. The frontend shows a "waking up the server" notice on slow login/register attempts to make this less confusing.
+- Prefer manual setup over the Blueprint? Create the two services yourself in the Render dashboard using the same root directories / build / start commands listed above, set the same env vars, **and manually add the rewrite rule and cache header described above** — neither is applied automatically outside the Blueprint flow.
