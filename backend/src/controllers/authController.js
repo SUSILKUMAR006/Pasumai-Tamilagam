@@ -115,8 +115,10 @@ export const getUserProfile = async (req, res) => {
     }
 
     // Get statistics
-    const treesRegistered = await Tree.countDocuments({ user: user._id });
-    const verifiedTrees = await Tree.countDocuments({ user: user._id, status: 'VERIFIED' });
+    const [treesRegistered, verifiedTrees] = await Promise.all([
+      Tree.countDocuments({ user: user._id }),
+      Tree.countDocuments({ user: user._id, status: 'VERIFIED' }),
+    ]);
 
     res.json({
       _id: user._id,
@@ -168,8 +170,10 @@ export const updateUserProfile = async (req, res) => {
 
     const updatedUser = await user.save();
 
-    const treesRegistered = await Tree.countDocuments({ user: updatedUser._id });
-    const verifiedTrees = await Tree.countDocuments({ user: updatedUser._id, status: 'VERIFIED' });
+    const [treesRegistered, verifiedTrees] = await Promise.all([
+      Tree.countDocuments({ user: updatedUser._id }),
+      Tree.countDocuments({ user: updatedUser._id, status: 'VERIFIED' }),
+    ]);
 
     res.json({
       _id: updatedUser._id,
