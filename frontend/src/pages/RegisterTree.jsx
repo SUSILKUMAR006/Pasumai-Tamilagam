@@ -33,10 +33,11 @@ const RegisterTree = () => {
   useEffect(() => {
     const loadMetadata = async () => {
       try {
-        const speciesData = await api.public.species();
+        const [speciesData, districtData] = await Promise.all([
+          api.public.species(),
+          api.public.districts(),
+        ]);
         setSpeciesList(speciesData);
-
-        const districtData = await api.public.districts();
         setDistricts(districtData);
       } catch (err) {
         console.error('Failed to load form metadata:', err);

@@ -35,14 +35,15 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await api.auth.login({ email, password });
       localStorage.setItem('tn_tree_token', res.token);
-      
+
       // Fetch full profile info with counts
       const profile = await api.auth.me();
       setUser(profile);
       return profile;
     } catch (error) {
-      setLoading(false);
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,13 +52,14 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await api.auth.register(userData);
       localStorage.setItem('tn_tree_token', res.token);
-      
+
       const profile = await api.auth.me();
       setUser(profile);
       return profile;
     } catch (error) {
-      setLoading(false);
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
