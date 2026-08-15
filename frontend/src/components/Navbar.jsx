@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { Leaf, Menu, X, User as UserIcon, LogOut, LayoutDashboard, PlusCircle, Map, Trophy, Languages } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo2.png';
 import { getImageUrl } from '../utils/imageUrl';
 const Navbar = () => {
   const { user, logout, isAuthenticated, isAdmin } = useAuth();

@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { Leaf, LogIn, Mail, Lock, AlertCircle, Clock } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo2.png';
 const Login = () => {
   const { login } = useAuth();
   const { t } = useLanguage();

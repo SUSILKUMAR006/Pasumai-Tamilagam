@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { api } from '../services/api';
 import { Leaf, UserPlus, Mail, Lock, Phone, User, MapPin, AlertCircle } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo2.png';
 const Register = () => {
   const { register } = useAuth();
   const { t } = useLanguage();
