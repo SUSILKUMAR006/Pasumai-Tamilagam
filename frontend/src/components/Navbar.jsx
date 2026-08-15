@@ -53,7 +53,7 @@ const Navbar = () => {
             <Link to="/" className="flex-shrink-0 flex items-center space-x-2 text-forest-700">
             {/* <Leaf className="h-7 w-7 text-forest-500 stroke-[2.5]" />
               <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-forest-700 to-emerald-600 bg-clip-text text-transparent">
-                Pasumai Tamilagam
+                Pasumai Kappom
               </span> */}
               <img src={logo} alt="" className='h-16 w-auto object-contain'/>
             </Link>

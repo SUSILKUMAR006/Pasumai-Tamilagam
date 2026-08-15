@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-white font-bold text-lg">
               <Leaf className="h-6 w-6 text-forest-400" />
-              <span>Pasumai Tamilagam</span>
+              <span>Pasumai Kappom</span>
             </div>
             <p className="text-sm text-slate-400">
               {t('footer.tagline')}
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} Pasumai Tamilagam. {t('footer.rights')}</p>
+          <p>© {new Date().getFullYear()} Pasumai Kappom. {t('footer.rights')}</p>
         </div>
       </div>
     </footer>

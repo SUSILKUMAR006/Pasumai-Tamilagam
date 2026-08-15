@@ -59,7 +59,7 @@ const AdminSidebar = () => {
       </nav>
 
       <div className="p-4 border-t border-slate-800 text-xs text-slate-500 text-center">
-        <span>Pasumai Tamilagam Admin v1.0</span>
+        <span>Pasumai Kappom Admin v1.0</span>
       </div>
     </aside>
   );
