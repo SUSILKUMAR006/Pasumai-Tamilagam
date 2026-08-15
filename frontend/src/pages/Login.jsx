@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { Leaf, LogIn, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Leaf, LogIn, Mail, Lock, AlertCircle, Clock } from 'lucide-react';
 import logo from '../assets/logo.png';
 const Login = () => {
   const { login } = useAuth();
@@ -13,6 +13,8 @@ const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [wakingUp, setWakingUp] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const idleLogout = location.state?.idleLogout;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,6 +54,13 @@ const Login = () => {
             {t('login.subtitle')}
           </p>
         </div>
+
+        {idleLogout && !error && (
+          <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-xl flex items-start space-x-2">
+            <Clock className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+            <span className="text-sm font-semibold text-amber-700">{t('login.idleLogout')}</span>
+          </div>
+        )}
 
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-xl flex items-start space-x-2">

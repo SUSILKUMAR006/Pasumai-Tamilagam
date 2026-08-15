@@ -70,6 +70,7 @@ export const translations = {
       registerHere: 'Register My Tree',
       errorDefault: 'Invalid email or password',
       wakingUp: 'Waking up the server — this can take up to a minute on the first request. Thanks for your patience.',
+      idleLogout: "You were logged out after 30 minutes of inactivity. Please sign in again.",
     },
     register: {
       createAccount: 'Create Account',
@@ -222,6 +223,7 @@ export const translations = {
       registerHere: 'எனது மரத்தை பதிவு செய்யவும்',
       errorDefault: 'தவறான மின்னஞ்சல் அல்லது கடவுச்சொல்',
       wakingUp: 'சேவையகம் தயாராகிறது — முதல் முயற்சிக்கு ஒரு நிமிடம் வரை ஆகலாம். பொறுமைக்கு நன்றி.',
+      idleLogout: '30 நிமிடங்கள் செயலற்று இருந்ததால் நீங்கள் வெளியேற்றப்பட்டீர்கள். மீண்டும் உள்நுழையவும்.',
     },
     register: {
       createAccount: 'கணக்கை உருவாக்கவும்',
